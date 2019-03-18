@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+﻿from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 import os
 
@@ -28,9 +28,15 @@ class Ui_Dialog(object):
         self.closeButton.setGeometry(QtCore.QRect(610, 30, 75, 23))
         self.closeButton.setObjectName("closeButton")
         self.imageLabel = QtWidgets.QLabel(Dialog)
-        self.imageLabel.setGeometry(QtCore.QRect(30, 240, 651, 641))
+        self.imageLabel.setGeometry(QtCore.QRect(30, 380, 371, 501))
         self.imageLabel.setText("")
         self.imageLabel.setObjectName("imageLabel")
+        self.movieGenreLabel = QtWidgets.QLabel(Dialog)
+        self.movieGenreLabel.setGeometry(QtCore.QRect(50, 240, 511, 41))
+        font = QtGui.QFont()
+        font.setPointSize(24)
+        self.movieGenreLabel.setFont(font)
+        self.movieGenreLabel.setObjectName("movieGenreLabel")
 
         self.closeButton.clicked.connect(self.closeButtonClick)
 
@@ -44,8 +50,9 @@ class Ui_Dialog(object):
         self.movieYearLabel.setText(_translate("Dialog", "Ano"))
         self.movieDirectorLabel.setText(_translate("Dialog", "Diretor"))
         self.closeButton.setText(_translate("Dialog", "Close"))
+        self.movieGenreLabel.setText(_translate("Dialog" , "Genre"))
 
-
+    #Codigo Próprio
     def closeButtonClick(self):
         print('close clicked')
 
@@ -64,3 +71,7 @@ class Ui_Dialog(object):
         self.imageLabel.setPixmap(pixmap)
         self.imageLabel.setScaledContents(True)
         self.imageLabel.show()
+
+
+    def setMovieGenre(self , newGenre):
+        self.movieGenreLabel.setText("Gênero: " + newGenre)

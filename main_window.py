@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+﻿from PyQt5 import QtCore, QtGui, QtWidgets
 import DataFetcher
 import movieInfoWindow
 import pprint
@@ -65,22 +65,29 @@ class Ui_MainWindow(object):
             movieTitle = movieData[0]['Title']
             movieYear = movieData[0]['Year']
             movieDirector = movieData[0]['Director']
+            movieGenre = movieData[0]['Genre']
 
+            #Este conjunto cria uma janela e associa a uma interface
+            #Cria uma janela (QDialog), e armazena na variavel
             movieDetailsWindow = QtWidgets.QDialog()
+            #construtor da classe de interface do designer
             ui = movieInfoWindow.Ui_Dialog()
+            #carrega a interface pra dentro da janela criada
             ui.setupUi(movieDetailsWindow)
+            #Fim do conjunto
+
+
             ui.setMovieTitle(movieTitle)
             ui.setMovieYear(movieYear)
             ui.setMovieDirector(movieDirector)
+            ui.setMovieGenre(movieGenre)
             ui.setMoviePoster(movieData[1])
+
             movieDetailsWindow.exec_()
 
         else:
             print('O SERVIDOR NÃO RETORNOU DADOS')  #  TODO: trocar para janela de warning
 
-
-
-GLOBAL_FILE_LIST = []
 
 if __name__ == "__main__":
     import sys
