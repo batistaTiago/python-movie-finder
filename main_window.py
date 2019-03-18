@@ -55,17 +55,19 @@ class Ui_MainWindow(object):
     def fetchData(self):
         movieData = {}
         if self.movieNameTextField.text() != "":
-            movieData = DataFetcher.fetchMovieContent(self.movieNameTextField.text())
+            tmp = DataFetcher.fetchMovieContent(self.movieNameTextField.text())
+            movieData = tmp[0]
+            imageFileName = tmp[1]
         else:
             print('DIGITE ALGUMA COISA!') #  TODO: trocar para janela de warning
 
 
         if movieData != {}:
 
-            movieTitle = movieData[0]['Title']
-            movieYear = movieData[0]['Year']
-            movieDirector = movieData[0]['Director']
-            movieGenre = movieData[0]['Genre']
+            movieTitle = movieData['Title']
+            movieYear = movieData['Year']
+            movieDirector = movieData['Director']
+            movieGenre = movieData['Genre']
 
             #Este conjunto cria uma janela e associa a uma interface
             #Cria uma janela (QDialog), e armazena na variavel
@@ -81,7 +83,7 @@ class Ui_MainWindow(object):
             ui.setMovieYear(movieYear)
             ui.setMovieDirector(movieDirector)
             ui.setMovieGenre(movieGenre)
-            ui.setMoviePoster(movieData[1])
+            ui.setMoviePoster(imageFileName)
 
             movieDetailsWindow.exec_()
 
